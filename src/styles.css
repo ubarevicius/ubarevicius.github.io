@@ -3,8 +3,7 @@ body {
 	font-family: 'Roboto', sans-serif;
     font-weight: 300;  
     margin-top: 50px;
-    font-size: 12px;
-    text-align: justify;
+    font-size: 13px;
 }
 
 h1, h2, h3, h4 {
@@ -12,29 +11,31 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 300;  
 }
 
 h2 {
-    font-size: 17px;
+    font-size: 22px;
     font-weight: 300;  
 }
 
 h3 {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 400;  
 }
 
 h4 {
-    font-size: 11px;    
+    font-size: 15px;    
     font-weight: 400;  
 }
 
 .jumbotron {
     background-color: white;
-    border: 1px solid grey;
+    border-bottom: 1px solid rgb(111,248,121);;
     border-radius: 0;
+    padding: 0;
+    padding-bottom: 30px;
 }
 
 .loading {
@@ -56,6 +57,18 @@ footer {
     height: 200px;
 }
 
+.footer-content {
+    padding-top:20px;
+    border-top: 1px solid rgb(111,248,121);;
+}
+
+.footer-link{
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #444;
+}
+
 .summary {
     cursor: pointer;
 }
@@ -64,3 +77,14 @@ footer {
     cursor: pointer;
 }
 
+a {
+    color: rgb(111,248,121);
+}
+
+a:hover {
+    color: rgb(111,248,121);
+}
+
+p {
+    text-align: justify;
+}
