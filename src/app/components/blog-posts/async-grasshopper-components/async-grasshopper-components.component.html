@@ -1,0 +1,52 @@
+<app-blog-post title="Async Grasshopper Components" subtitle="" [isSummary]="isSummary">
+  <div class="summary" *ngIf="isSummary">
+    <p>Grasshopper components in .Net 4 have ability to use asynchronous tasks. This opens very interesting possibilities for
+      non-blocking canvas model architecture. Currently Grasshopper is built with the idea of synchronously executing streams
+      of computing blocks, but component can also execute parallel tasks.</p>
+  </div>
+  <div class="body" *ngIf="!isSummary">
+    <p>Grasshopper components in .Net 4 have ability to use asynchronous tasks. This opens very interesting possibilities for
+      non-blocking canvas model architecture. Currently Grasshopper is built with the idea of synchronously executing streams
+      of computing blocks, but component can also execute parallel tasks. Such methodology allows not only for multithreaded
+      computing, but also for calls to be made to REST endpoints or other types of web services. In this blog post I will
+      explain my findings when dealing with such async components for RAPCAM.
+    </p>
+    <p>As .Net 4 and current Grasshopper implementation puts some limitations on asynchronous tasks, one should be careful when
+      implementing such solutions, but let’s just begin with some basic pseudocode for SolveInstance method
+    </p>
+    <pre>
+    <code class="cs">
+    {{codeSample}}
+  </code>
+  </pre>
+    <p>As you can see there are some implications for simplicity in such a component. I was not able to use DA.SetData directly
+      in RanToCompletion code block as it left dependant components unable to receive resolved data (resultPolyline). The
+      only working solution was to expire both the solution and active canvas document when task was finished. This triggers
+      SolveInstance again with the different state, reflected by skipSolution boolean and solved resultPolyline. All dependent
+      components then are able to pick up resulting polyline and correctly recompute. This does not seem to affect unrelated
+      components.
+    </p>
+    <p>Gap logic had to be disabled as that was forcing my component to output branched list of null and polyline values. By
+      changing Nickname of component one can easily inform the user that component is executing. It is of course possible
+      to add nice spinners or other progress indicators when writing such components, but it was not my intention to do such
+      a thing.
+    </p>
+    <p>componentBusy variable allows to protect component from recomputing itself when context changes. This can be improved
+      with richer state mechanism, which could allow in some specific situations to cancel the thread and recalculate solution,
+      etc.
+    </p>
+    <img src="/assets/blog-images/async-grasshopper-components/rapcam-roughning.gif" alt="rapcam roughning" width="100%">
+    <p>
+      This example gif shows the principle and actual implications of such component. 
+      As you can see, thread does not block user interface. No external components get corrupt. 
+      Component isolates it’s own state till calculation is finished. User is thus able to use rhino and grasshopper 
+      further while calculation is done.
+    </p>
+    <p>
+      Using multiple interdependant components would require more complex state mechanism, but this shows the principle without overcomplicating the idea. 
+      It was not my intention to give all the answers here as I have not yet delved into all the consequences of such architecture, 
+      rather I prefer to introduce the idea of async component and ask community to reflect on it. We should be critical about such a pattern, 
+      but its’ performance implications are hard to neglect.
+    </p>
+  </div>
+</app-blog-post>

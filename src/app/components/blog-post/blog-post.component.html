@@ -1,0 +1,5 @@
+<h3 *ngIf="isSummary" class="blog-title">{{title}}</h3>
+<h3 *ngIf="!isSummary">{{title}}</h3>
+<h4>{{subtitle}}</h4>
+<ng-content selector=".summary"></ng-content>
+<ng-content selector=".body"></ng-content>

@@ -1,3 +1,27 @@
-<h3>
-  {{title}}
-</h3>
+<div class="container">
+  <div class="col-xs-12 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-lg-8 offset-lg-2">
+    <div class="header clearfix">
+      <h1 class="website-title" routerLink="/">{{title}}</h1>
+      <!--<nav>
+        <ul class="nav nav-pills pull-right">
+          <li role="presentation" class="active"><a href="#">Home</a></li>
+          <li role="presentation"><a href="#">About</a></li>
+          <li role="presentation"><a href="#">Contact</a></li>
+        </ul>
+      </nav>-->
+    </div>
+    <div class="jumbotron">
+      <h2>Me</h2>
+      <p>I am an architect and a programmer with a deep interest in computational methodologies. I enjoy developing various
+        kinds of software applications and in this blog I share my ideas about that relate to the programming. You can find me on twitter by <a href="https://twitter.com/ubarevicius" target="_blank" title="Twitter Matas_U">@ubarevicius</a></p>
+    </div>
+
+    <router-outlet></router-outlet>
+
+</div>
+  <footer class="footer">
+    <div class="col-xs-12 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-lg-8 offset-lg-2">
+      <p>© 2017 - Matas Ubarevicius.</p>
+    </div>
+  </footer>
+</div>
