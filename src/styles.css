@@ -85,6 +85,14 @@ a:hover {
     color: rgb(111,248,121);
 }
 
+a:link {
+    color: rgb(111,248,121);
+}
+
+a:visited {
+    color: rgb(111,248,121);
+}
+
 p {
     text-align: justify;
 }
