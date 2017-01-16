@@ -59,16 +59,28 @@ footer {
 
 .footer-content {
     padding-top:20px;
-    border-top: 1px solid rgb(111,248,121);;
+    border-top: 1px solid rgb(111,248,121);
 }
 
-.footer-link{
+.link{
     padding: 2px;
     padding-left: 5px;
     padding-right: 5px;
     background-color: #444;
 }
 
+.article-link {
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 400;
+    color: white !important;
+    background-color: #444;
+}
+a.article-link{
+    color: black;
+}
 .summary {
     cursor: pointer;
 }

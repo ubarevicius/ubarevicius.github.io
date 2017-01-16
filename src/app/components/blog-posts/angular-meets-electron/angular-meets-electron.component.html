@@ -1,0 +1,81 @@
+<app-blog-post title="Angular meets Electron" subtitle="" [isSummary]="isSummary">
+  <div class="summary" *ngIf="isSummary">
+    <p>
+      There are many great desktop apps currently running on Electron and after the release of the new Angular I was thinking to
+      give it a try. The combination of two worlds can be of great potential. Desktop apps require possibilities to scale
+      and Typescript seems to offer the natural answer to that. When I began working on this integration project I ended
+      up going a bit further than initially expected to make the basic setup working. That is why I decided to give a short
+      description of the steps that I had to do in order to make it work so that it may be a bit easier for you to kick things
+      off.
+    </p>
+  </div>
+  <div class="body" *ngIf="!isSummary">
+    <figure>
+      <a href="http://angular.io" target="_blank">
+        <img src="/assets/blog-images/angular-meets-electron/angular.png" alt="Angular" width="10%">
+      </a>
+      <a href="http://electron.atom.io" target="_blank">
+        <img src="/assets/blog-images/angular-meets-electron/electron.svg" alt="Electron" width="7%">
+      </a>
+    </figure>
+    <p>
+      There are many great desktop apps currently running on Electron and after the release of the new <a class="article-link"
+        href="https://twitter.com/hashtag/itsJustAngular?src=hash" target="_blank">Angular</a> I was thinking to give it a
+      try. The combination of two worlds can be of great potential. Desktop apps require possibilities to scale and Typescript
+      seems to offer the natural answer to that. When I began working on this integration project I ended up going a bit
+      further than initially expected to make the basic setup working. That is why I decided to give a short description
+      of the steps that I had to do in order to make it work so that it may be a bit easier for you to kick things off.
+    </p>
+
+    <p>
+      If you just want to check my setup and skip the post, go to my <a class="article-link" href="https://github.com/ubarevicius/angular-meets-electron"
+        target="_blank">Angular meets Electron</a> starter. You can fork or just download the repository and use it further.
+    </p>
+    <p> Electron code runs directly on your machine and communicates with the operating system, while Angular runs in web renderer
+      as the web application. Because together they form coherent application I decided to setup the base of Electron code
+      to also use Typescript as a starting point. Not to begin completely from scratch I forked the <a class="article-link"
+        href="https://github.com/cmelo/angular2-electron-starter" target="_blank">cmelo’s starter project</a> and began looking
+      at the setup. First thing I did was to update Angular-cli version to beta.25.5 with ahead of time compilation working.
+      Angular-cli has improved quite a bit during the last few months, so this seemed an obvious direction to follow. I am
+      planning to update this base further when cli will release new updates. I also changed some build configuration steps
+      that were using OS dependent copy commands in package.json. As Angular uses typescript I decided that Electron should
+      also use typescript. Furthermore, after reading through the provided sample application I couldn’t find some important
+      communication link between Electron and Angular. Authors probably decided to let developers solve it themselves, but
+      the solution was not immediately obvious and required some workarounds.
+    </p>
+    <p>
+      In the video below you will see development experience that I was able to achieve with VSCode editor. To start things off
+      I typed <strong>yarn run dev</strong> in my terminal. You can also use <strong>npm run dev</strong>. This builds
+      Electron and starts two parallel watcher tasks by using library called <strong>concurrently</strong>. These tasks will
+      be watching both Angular project and Electron typescript files for changes. To start Electron I am using launch.json
+      configuration of VSCode. In <strong>Debug</strong> section I am thus able to run launch configuration named <strong>Debug main process</strong>.
+      You will see later that this allows me to brake in Electron's code. Electron on development environment works with
+      live reload, thus all changes to Angular will be immediately visible in Electron's window. Changes that happen in Electron
+      code will require process refresh button to be clicked in debug menu. To implement full process reload on changes would
+      be future improvement. When something changes on Angular code though, everything is rebuilt and chromium reloads the
+      new code. I find this setup to be fast enough to be workable for the daily development. Of course there are still space
+      for improvement and new ideas are welcome.
+    </p>
+    <figure>
+      <a href="/assets/blog-images/angular-meets-electron/the use of angular and electron.gif" target="_blank">
+        <img src="/assets/blog-images/angular-meets-electron/the use of angular and electron.gif" alt="The use of angular and electron"
+          width="100%">
+      </a>
+      <figcaption>Development experience of Angular and Electron</figcaption>
+    </figure>
+    <p>
+      In order to build production version you can use
+      <strong>yarn run package_all</strong> command in your terminal. This will create builds for well known OS, such as
+      Windows, Mac and Linux. In the video below you can see the process of building. This command first builds Typescript
+      files of Electron, then via Angular-cli builds AoT version of the application bundle, which is also minified and tree-shaked.
+      At the end Electron packager makes it's magic and sends the end result to <strong>dist-app-all</strong> folder.
+    </p>
+        <figure>
+      <a href="/assets/blog-images/angular-meets-electron/package electron app.gif" target="_blank">
+        <img src="/assets/blog-images/angular-meets-electron/package electron app.gif" alt="Package Electron App"
+          width="100%">
+      </a>
+      <figcaption>Package Electron App</figcaption>
+    </figure>
+  </div>
+</app-blog-post>
