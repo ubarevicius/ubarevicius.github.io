@@ -1,0 +1,41 @@
+<app-blog-post title="Rhino to JSON" subtitle="" [isSummary]="isSummary">
+  <div class="summary" *ngIf="isSummary">
+    <p>
+      RhinoToJson plugin export allows you to save parts of your Rhino scene into JSON format. JSON is handy when building WebGL
+      based applications, using game engines, such as THREEJS. Technically this plugin is a very basic implementation of
+      RCvA3C codebase. RCvA3c is Rhinocommon implementation of GHva3c plugin, which was created to work on Grasshopper 3d
+      (Rhino visual scripting environment).
+    </p>
+  </div>
+  <div class="body" *ngIf="!isSummary">
+    <figure>
+      <a href="http://food4rhino.com/app/rhinotojson" target="_blank">
+        <img src="/assets/blog-images/rhino-to-json/rhjson.png" alt="RhinoToJson" width="120px">
+      </a>
+    </figure>
+    <p>
+      This week I wrote and opensourced really basic RhinoToJson plugin for Rhino v5. You can download this plugin for free from
+      <a class="article-link" href="http://www.food4rhino.com/app/rhinotojson" target="_blank">food4rhino</a> website. RhinoToJson
+      plugin export allows you to save parts of your Rhino scene into JSON format. JSON is handy when building WebGL based
+      applications, using game engines, such as THREEJS. You can also contribute to this project on <a class="article-link"
+        href="https://github.com/ubarevicius/RhinoToJson" target="_blank">RhinoToJson Github</a> page. Technically this plugin
+      is a very basic implementation of
+      <a class="article-link" href="https://github.com/ubarevicius/RCvA3C" target="_blank">RCvA3C</a> codebase. RCvA3c is
+      Rhinocommon implementation of <a class="article-link" href="https://github.com/va3c/GHvA3C" target="_blank">GHva3c</a>      plugin, which was created to work on Grasshopper 3d (Rhino visual scripting environment).
+    </p>
+    <p>
+      Install via Rhino installer, start Rhino, in command line interface enter command <strong>RhinoToJson</strong>. This
+      will prompt you to select objects you want to export. Afterwards JSON will be generated and you will be offered to
+      save the file. It will generate <strong>scene.json</strong>, which you can use in your JSON based code. As already
+      mentioned, this is a very basic implementation, which works with mesh, brep and surface objects. Curves, polylines
+      and other types of objects were not yet implemented.
+    </p>
+        <figure>
+      <a href="/assets/blog-images/rhino-to-json/RhinoToJson.gif" target="_blank">
+        <img src="/assets/blog-images/rhino-to-json/RhinoToJson.gif" alt="The use of RhinoToJson"
+          width="100%">
+      </a>
+      <figcaption>RhinoToJson usage example</figcaption>
+    </figure>
+  </div>
+</app-blog-post>

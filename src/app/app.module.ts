@@ -12,6 +12,7 @@ import { GrasshopperComponent } from './components/blog-posts/async-grasshopper-
 import { BlogComponent } from './components/blog/blog.component';
 import { ArcInnovationAwardTechInnovationComponent } from './components/blog-posts/arc-innovation-award-tech-innovation/arc-innovation-award-tech-innovation.component';
 import { AngularMeetsElectronComponent } from './components/blog-posts/angular-meets-electron/angular-meets-electron.component';
+import { RhinoToJsonComponent } from './components/blog-posts/rhino-to-json/rhino-to-json.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AngularMeetsElectronComponent } from './components/blog-posts/angular-m
     routingComponents,
     BlogComponent,
     ArcInnovationAwardTechInnovationComponent,
-    AngularMeetsElectronComponent
+    AngularMeetsElectronComponent,
+    RhinoToJsonComponent
   ],
   imports: [
     BrowserModule,

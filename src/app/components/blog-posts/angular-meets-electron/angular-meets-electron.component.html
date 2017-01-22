@@ -70,12 +70,72 @@
       files of Electron, then via Angular-cli builds AoT version of the application bundle, which is also minified and tree-shaked.
       At the end Electron packager makes it's magic and sends the end result to <strong>dist-app-all</strong> folder.
     </p>
-        <figure>
+    <figure>
       <a href="/assets/blog-images/angular-meets-electron/package electron app.gif" target="_blank">
-        <img src="/assets/blog-images/angular-meets-electron/package electron app.gif" alt="Package Electron App"
-          width="100%">
+        <img src="/assets/blog-images/angular-meets-electron/package electron app.gif" alt="Package Electron App" width="100%">
       </a>
       <figcaption>Package Electron App</figcaption>
     </figure>
+    <p>
+      I hope you now got some feeling on how this setup works. Now I will explain what I had to do to get Electron instance into
+      the Angular. I could not find any easy way to import Electron in the natural Typescript way, so I followed the solution
+      described in this <a class="article-link" href="http://electron.rocks/angular2-electron/" target="_blank">Electron rocks</a>      blog post. In my <strong>index.html</strong> I thus defined electron variable, installed Electron typings and wrote
+      integration service in angular that exposes the type safe electron variable. I understand that this is not an optimal
+      solution, so if someone will provide a better answer I'll be more than happy to merge it into my codebase. For a time
+      being this provides a workable setup.
+    </p>
+
+    <pre>
+    <code class="html">
+    {{indexHtml}}
+  </code>
+  </pre>
+    <p>
+      As mentioned previously, <strong>integration.service.ts</strong> just needs to declare the variable that is already
+      sitting in the global namespace to reference it. We further use it to access Electron's functionality.
+    </p>
+    <pre>
+    <code class="ts">
+    {{integrationService}}
+  </code>
+  </pre>
+    <p>
+      After this is done, we are able to move on and in <strong>app.component.ts</strong> just inject the integration service,
+      get Electron instance and use it's constituent parts. You can also see how to make everything type safe and get intellisense.
+      From Electron we need renderer to listen for events that are triggered in Electron code. To communicate back to Electron
+      I used currentWindow property. It is used in clickButton event handler. I guarantee there are other ways to send messages
+      back and forth between Angular and Electron, but this is a base <strong>IPC</strong> communication line that works.
+    </p>
+    <pre>
+    <code class="ts">
+    {{appComponent}}
+  </code>
+  </pre>
+    <p>
+      <strong>app.component.html</strong> template just renders the message that comes from Electron and binds clickButton
+      event handler of the button element.
+    </p>
+    <pre>
+    <code class="html">
+    {{appComponentTemplate}}
+  </code>
+  </pre>
+    <p>
+      Finally the Electron <strong>main.ts</strong> file holds the base setup that does Electron side communication. It also
+      uses typings. As you can see, if electron environment variable is set to development, we enable live reload. Otherwise
+      the whole <strong>electron-reload</strong> library remains unloaded. Furhter on in the code, while creating the application
+      window we send some events to angular and register listeners for events that come from Angular code.
+    </p>
+    <pre>
+    <code class="ts">
+    {{electronCode}}
+  </code>
+  </pre>
+    <p>
+      I suppose this is just enough code to make it a bit clearer what the <a class="article-link" href="https://github.com/ubarevicius/angular-meets-electron"
+        target="_blank">Angular meets Electron</a> starter setup offers you for the first beginning. I will be analyzing these
+      technologies further, so expect also for improvements to be made on this base implementation. Hopefully new posts will
+      follow on related topics. But for now, thanks for reading and good luck when using Anuglar and Electron together!
+    </p>
   </div>
 </app-blog-post>
